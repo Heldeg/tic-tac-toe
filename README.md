@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# 🎮 Tic-Tac-Toe (Triqui) - React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Minijuego multiplataforma desarrollado con React Native y Expo. Este proyecto implementa una partida clásica de Tres en Raya con 3 niveles de dificultad, gestión de perfiles de usuario y configuración, todo persistido localmente.
 
-## Get started
+## 🚀 Características Principales
 
-1. Install dependencies
+- **Juego Interactivo:** 3 niveles de dificultad para desafiar al jugador.
+- **Navegación Avanzada:** Uso de `Expo Router` implementando navegación por pestañas (Tabs) y apilamiento (Stack).
+- **Persistencia de Datos:** Uso de `expo-sqlite` para almacenar las preferencias de dificultad y el perfil del usuario.
+- **Arquitectura Limpia:** Estructura modular separando la capa de presentación (UI) de la lógica de dominio y datos.
+
+## 📁 Estructura del Proyecto
+
+El proyecto sigue principios de Clean Architecture:
+
+- `/app`: Rutas y vistas de la aplicación (UI) utilizando Expo Router.
+- `/components`: Componentes visuales reutilizables.
+- `/domain`: Lógica de negocio y acceso a datos.
+  - `/data`: DAOs, Entidades, Configuración local de SQLite y Mappers.
+  - `/model`: Modelos puros de dominio.
+  - `/repository`: Interfaces y abstracción del acceso a datos.
+- `/hooks`: Custom hooks de React para encapsular lógica compleja.
+
+## 🛠️ Requisitos Previos
+
+- [Node.js](https://nodejs.org/) instalado.
+- Aplicación **Expo Go** instalada en tu dispositivo móvil (Android/iOS) para pruebas.
+
+## 🏃‍♂️ Instrucciones de Instalación y Uso
+
+1. Instala las dependencias del proyecto:
 
    ```bash
    npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
 
 ```bash
-npm run reset-project
+
+2. Inicia el servidor de desarrollo:
+
+```bash
+npx expo start
+
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+3. Escanea el código QR que aparece en la terminal con la aplicación **Expo Go** en tu dispositivo móvil.
