@@ -1,34 +1,22 @@
-import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import React from "react";
+import { View, Text, Pressable, StyleSheet, Dimensions } from "react-native";
 import { useTicTacToe } from "../hooks/useTicTacToe";
-import { DifficultyLevel } from "../domain/model/GameLogic";
+import { useGameSettings } from "./GameSettingsContext";
 
 export default function TicTacToeScreen() {
-  const [difficulty, setDifficulty] = useState<DifficultyLevel>("MEDIUM");
+  const { difficulty } = useGameSettings();
 
   const { board, winner, isDraw, isPlayerTurn, handleCellClick, resetGame } =
     useTicTacToe(difficulty);
 
-  const toggleDifficulty = () => {
-    if (!isPlayerTurn && !winner && !isDraw) return;
-
-    const levels: DifficultyLevel[] = ["EASY", "MEDIUM", "HARD"];
-    const currentIndex = levels.indexOf(difficulty);
-    const nextIndex = (currentIndex + 1) % levels.length;
-
-    setDifficulty(levels[nextIndex]);
-    resetGame();
-  };
+  const windowWidth = Dimensions.get("window").width;
+  const boardSize = Math.min(windowWidth - 40, 360);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>TiC TAC TOE vs IA</Text>
 
-      {/* Controll */}
       <View style={styles.controls}>
-        <Pressable style={styles.button} onPress={toggleDifficulty}>
-          <Text style={styles.buttonText}>Dificultad: {difficulty}</Text>
-        </Pressable>
         <Pressable style={styles.button} onPress={resetGame}>
           <Text style={styles.buttonText}>Reiniciar</Text>
         </Pressable>
@@ -46,7 +34,7 @@ export default function TicTacToeScreen() {
         )}
       </View>
 
-      <View style={styles.board}>
+      <View style={[styles.board, { width: boardSize, height: boardSize }] }>
         {board.map((cellState, index) => (
           <Pressable
             key={index}
