@@ -5,7 +5,6 @@ import { SettingsDao } from '../domain/data/dao/SettingsDao';
 import { PlayerModel } from '../domain/model/PlayerModel';
 import { SettingsModel } from '../domain/model/SettingsModel';
 
-
 export const useGameData = () => {
     const db = useSQLiteContext();
     const [settings, setSettings] = useState<SettingsModel | null>(null);
@@ -27,13 +26,18 @@ export const useGameData = () => {
     };
 
     useEffect(() => {
-        loadData();
-    }, []);
+        void loadData();
+    }, [db]);
 
     const changeDifficulty = async (newDifficulty: string) => {
         await SettingsDao.updateSettings(db, newDifficulty);
         await loadData();
     };
 
-    return { settings, players, loading, changeDifficulty };
+    const updatePlayer = async (id: number, name: string) => {
+        await PlayerDao.updatePlayer(db, id, name);
+        await loadData();
+    };
+
+    return { settings, players, loading, changeDifficulty, updatePlayer };
 };
